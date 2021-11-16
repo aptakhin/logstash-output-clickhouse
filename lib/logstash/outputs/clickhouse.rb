@@ -217,7 +217,7 @@ class LogStash::Outputs::ClickHouse < LogStash::Outputs::Base
       else
         if req_count >= @request_tolerance
           log_failure(
-              "Encountered non-200 HTTP code #{response.code}",
+              "Encountered non-200 HTTP code #{response.code}. Mistake message is #{response.message}. Mistake body is #{response.body}",
               :response_code => response.code,
               :url => url,
               :size => documents.length,

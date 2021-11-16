@@ -95,18 +95,7 @@ class LogStash::Outputs::ClickHouse < LogStash::Outputs::Base
 
     lambda {
       hosts.flat_map { |h|
-        scheme = URI(h).scheme
-        host = URI(h).host
-        port = URI(h).port
-        path = URI(h).path
-
-        if ip_re !~ host
-          resolver.get_addresses(host).map { |ip|
-            "#{scheme}://#{ip}:#{port}#{path}"
-          }
-        else
-          [h]
-        end
+        [h]
       }
     }
   end
